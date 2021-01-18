@@ -1,0 +1,8 @@
+{{#length}}
+    <button type="button" class="btn btn-primary" id="update" onclick="window.alert('수정되었습니다.');history.back()">저장</button>
+    <a role="button" class="btn btn-secondary" id="modified" style="color: white">수정</a>
+    <button type="button" class="btn btn-primary" id="delete">삭제</button>
+{{/length}}
+{{^length}}
+    <button type="button" class="btn btn-primary" id="create" onclick="window.alert('등록되었습니다.');history.back()">등록</button>
+{{/length}}

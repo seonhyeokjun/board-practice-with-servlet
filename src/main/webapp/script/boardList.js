@@ -9,23 +9,14 @@ require(
         $(function () {
             $('body').append(boardList());
             $('#navbarSupportedContent button').on('click', function () {
-                var params = null;
-                params = setProperty(params, {
-                    action: $(this).attr('id')
-                })
-
-                $('input').each(function () {
-                    console.log('key:', $(this).attr('id'), 'val:', $(this).val())
-                    params = setProperty(params, {
-                        [$(this).attr('id')]: $(this).val()
-                    })
-                })
-
-                var i = ajax(params);
-                console.log(JSON.parse(i));
-                $('#table tbody').html(boardItem({maps: JSON.parse(i)}));
+                getList()
             })
+            getList();
         })
+
+        function getList(){
+            $('#table tbody').html(boardItem({maps: JSON.parse(ajax({ action: 'read' }))}));
+        }
     }
 )
 

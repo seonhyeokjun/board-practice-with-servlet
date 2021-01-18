@@ -12,7 +12,6 @@ define([
             data : params,
             async : false,
             success: function (data) {
-                //$('#table').html(template({maps: JSON.parse(data)}));
                 loop = data;
             }
         });
