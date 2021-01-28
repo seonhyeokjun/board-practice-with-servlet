@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>board practice</h2>
-<a href="./view/Board.html">게시판</a>
+<a href="./view/BoardList.html">게시판</a>
 </body>
 </html>

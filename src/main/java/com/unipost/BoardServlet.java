@@ -58,6 +58,14 @@ public class BoardServlet extends HttpServlet {
                     map.put("contents", contents);
                 }
             }
+        } else if (action.equals("detail")){
+            int matchIndex = getMatchIndex(sequence);
+            Map<String, String> map = maps.get(matchIndex);
+            int hit = Integer.parseInt(map.get("hit"));
+            hit++;
+            map.put("hit", String.valueOf(hit));
+            res.getWriter().append(new ObjectMapper().writeValueAsString(map));
+            return;
         } else if (action.equals("delete")) {
             int matchIndex = getMatchIndex(sequence);
             maps.remove(matchIndex);

@@ -5,7 +5,14 @@ require([
     'stache!/view/BoardView',
     'stache!/view/BoardItem',
     'stache!/view/Button'
-], function ($, ajax, common, boardView, boardItem, boardButton) {
+], function (
+    $,
+    ajax,
+    common,
+    boardView,
+    boardItem,
+    boardButton
+) {
     var state = window.location.search.length > 0 ? 'update' : 'create'
     var length = window.location.search.length
 
@@ -30,24 +37,20 @@ require([
             })
         })
         let boardData = ajax(params);
-        console.log(JSON.parse(boardData));
         $('#table').html(boardItem({maps: JSON.parse(boardData)}));
     })
-
     if (state === 'update') {
-        console.log(state);
+        ajax({action: 'detail', sequence:common.getParameterByName('sequence')});
         ['sequence', 'title', 'contents'].forEach(key => setValue(key))
     }
 
     function setValue (key) {
-        console.log(key);
         let selector = $(`#${key}`);
         selector.attr('readonly', true)
         selector.val(common.getParameterByName(key))
     }
+    function setProperty (ori, target) {
+        if (typeof ori !== 'object' || typeof target !== 'object') return false
+        return Object.assign({}, ori || {}, target)
+    }
 })
-
-function setProperty (ori, target) {
-    if (typeof ori !== 'object' || typeof target !== 'object') return false
-    return Object.assign({}, ori || {}, target)
-}
